@@ -1,4 +1,5 @@
 const express = require("express");
+const { db } = require("../database");
 const router = express.Router();
 
 router.get("/", (req, res) => {
@@ -12,6 +13,9 @@ router.post("/", (req, res) => {
   messageBoard.added = Date.now();
 
   try {
+    db.insert({...messageBoard}, (err, doc) => {
+      console.log("message added: ", doc);
+    })
   } catch (error) {
     console.log(error);
   }

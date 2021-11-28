@@ -3,6 +3,7 @@ extends layout
 block content
   h1= title
   each message in messages
-    h2= message.text 
+    h2= message.messageText 
     p= message.user
-    p= message.added
+    - const date = new Date(message.added);
+    p Added: #{date.toGMTString()}
